@@ -9,7 +9,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'dfgfg-f65fld-dsfsypzs',
+            'cookieValidationKey' => 'dfgfg-f65fld-dsfsypzsfh65',
         ],
         'urlManager' => [
             'enablePrettyUrl' => false,
