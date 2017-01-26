@@ -13,6 +13,7 @@ use app\models\ContactForm;
 use app\models\MyForm;
 use app\models\Comments;
 use app\models\Posts;
+use app\models\Courses;
 use yii\data\Pagination;
 
 class SiteController extends Controller
@@ -90,5 +91,14 @@ class SiteController extends Controller
     public function actionAuthor()
     {
         return $this->render('author');
+    }
+
+    public function actionVideo()
+    {
+        $coures = Courses::find()->orderBy(['id'] => SORT_DESC)->all();
+
+        return $this->render([
+            'courses' => $courses
+        ]);
     }
 }
