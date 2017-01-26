@@ -102,7 +102,7 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionRev()
+    public function actionReviews()
     {
         $reviews = Reviews::find()->orderBy('rand()')->all();
 
