@@ -160,7 +160,6 @@ class SiteController extends Controller
     {
         $post = Posts::find()->where(['id' => Yii::$app->getRequest()->getQueryParam('id')])->one();
         Posts::setNumbers([$post]);
-
         return $this->render('post', [
             'post' => $post
         ]);
