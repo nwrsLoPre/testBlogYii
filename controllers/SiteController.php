@@ -15,6 +15,8 @@ use app\models\Comments;
 use app\models\Posts;
 use app\models\Courses;
 use app\models\Reviews;
+use app\models\Sites;
+use app\models\SiteForm;
 use yii\data\Pagination;
 
 class SiteController extends Controller
@@ -110,5 +112,48 @@ class SiteController extends Controller
         return $this->render('rev', [
             'reviews' => $reviews
         ]);
+    }
+
+    public function actionSites()
+    {
+        $sites = Sites::find()->where(['active' => 1])->orderBy(['id' => SORT_DESC])->all();
+
+        return $this->render('sites', [
+            'sites' => $sites
+        ]);
+    }
+
+    public function actionAddsite()
+    {
+        $model = new SiteForm();
+
+        if($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $site = new Sites();
+            $site->adress = $model->adress;
+            $site->description = $model->description;
+            $site->save();
+
+            return $this->render('addsite', [
+                'model' => $model,
+                'success' => true,
+                'error' => false
+            ]);
+        }
+        else {
+            if(isset($_POST["$address"]))
+            {
+                $error = true;
+            }
+            else
+            {
+                $error = false;
+            }
+
+            return $this->render('addsite', [
+                'model' => $model,
+                'success' => false,
+                'error' => $error
+            ]);
+        }
     }
 }
