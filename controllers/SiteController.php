@@ -117,7 +117,6 @@ class SiteController extends Controller
     public function actionSites()
     {
         $sites = Sites::find()->where(['active' => 1])->orderBy(['id' => SORT_DESC])->all();
-
         return $this->render('sites', [
             'sites' => $sites
         ]);
