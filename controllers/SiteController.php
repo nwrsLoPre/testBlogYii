@@ -95,9 +95,9 @@ class SiteController extends Controller
 
     public function actionVideo()
     {
-        $coures = Courses::find()->orderBy(['id' => SORT_DESC])->all();
+        $courses = Courses::find()->orderBy(['id' => SORT_DESC])->all();
 
-        return $this->render([
+        return $this->render('video', [
             'courses' => $courses
         ]);
     }
