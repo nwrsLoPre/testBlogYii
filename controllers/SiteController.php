@@ -86,4 +86,9 @@ class SiteController extends Controller
             'pagination' => $pagination
         ]);
     }
+
+    public function actionAuthor()
+    {
+        return $this->render('author');
+    }
 }
