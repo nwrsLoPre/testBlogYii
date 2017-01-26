@@ -14,6 +14,7 @@ use app\models\MyForm;
 use app\models\Comments;
 use app\models\Posts;
 use app\models\Courses;
+use app\models\Reviews;
 use yii\data\Pagination;
 
 class SiteController extends Controller
@@ -102,11 +103,11 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionReviews()
+    public function actionRev()
     {
         $reviews = Reviews::find()->orderBy('rand()')->all();
 
-        return $this->render('reviews', [
+        return $this->render('rev', [
             'reviews' => $reviews
         ]);
     }
