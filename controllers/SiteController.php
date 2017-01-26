@@ -106,7 +106,7 @@ class SiteController extends Controller
     {
         $reviews = Reviews::find()->orderBy('rand()')->all();
 
-        return $this->render('rev', [
+        return $this->render('reviews', [
             'reviews' => $reviews
         ]);
     }
