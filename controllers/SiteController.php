@@ -129,7 +129,7 @@ class SiteController extends Controller
 
         if($model->load(Yii::$app->request->post()) && $model->validate()) {
             $site = new Sites();
-            $site->adress = $model->adress;
+            $site->address = $model->address;
             $site->description = $model->description;
             $site->save();
 

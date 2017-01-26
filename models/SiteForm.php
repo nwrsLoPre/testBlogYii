@@ -17,3 +17,5 @@ class SiteForm extends Model
         ];
     }
 }
+
+?>
