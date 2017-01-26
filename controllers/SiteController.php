@@ -155,4 +155,14 @@ class SiteController extends Controller
             ]);
         }
     }
+
+    public function actionPost()
+    {
+        $post = Posts::find()->where(['id' => Yii::$app->getRequest()->getQueryParam('id')])->one();
+        Posts::setNumbers([$post]);
+
+        return $this->render('post', [
+            'post' => $post
+        ]);
+    }
 }
