@@ -2,11 +2,13 @@
 
 namespace app\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 
 class Posts extends ActiveRecord
 {
-    $number;
+    public $number;
+    public $link;
 
     public function afterFind()
     {

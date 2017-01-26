@@ -12,6 +12,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\MyForm;
 use app\models\Comments;
+use app\models\Posts;
 use yii\data\Pagination;
 
 class SiteController extends Controller
@@ -65,6 +66,24 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $query = Posts::find()->where(['hide' => 0]);
+        $pagination = new Pagination([
+           'defaultPageSize' => 5,
+            'totalCount' => $query->count()
+        ]);
+
+        $posts = $query->orderBy(['date' => SORT_DESC])
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+        Posts::setNumbers($posts);
+
+        return $this->render('index', [
+            'posts' => $posts,
+            'active_page' => Yii::$app->request->get("page", 1),
+            'count_pages' => $pagination->getPageCount(),
+            'pagination' => $pagination
+        ]);
     }
 }
