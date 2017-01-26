@@ -22,7 +22,7 @@ class Posts extends ActiveRecord
         $this->date = date('j ', $this->date).$monthes[date('n', $this->date)].date(' , Y', $this->date);
         $this->intro_text = $this->replaceContent($this->intro_text);
         $this->full_text = $this->replaceContent($this->full_text);
-        $this->link = Yii->$app->urlManager->createUrl(["site/post", "id" => $this->id]);
+        $this->link = Yii::$app->urlManager->createUrl(["site/post", "id" => $this->id]);
         $this->img = "/web/images/posts/".$this->img;
     }
 
