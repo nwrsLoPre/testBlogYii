@@ -101,4 +101,13 @@ class SiteController extends Controller
             'courses' => $courses
         ]);
     }
+
+    public function actionRev()
+    {
+        $reviews = Reviews::find()->orderBy('rand()')->all();
+
+        return $this->render('rev', [
+            'reviews' => $reviews
+        ]);
+    }
 }
