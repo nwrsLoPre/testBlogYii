@@ -168,7 +168,7 @@ class SiteController extends Controller
 
     public static function actionReleases()
     {
-        $query = Posts::find()->where(['hide' => 0, 'is_realese' => 1]);
+        $query = Posts::find()->where(['hide' => 0, 'is_release' => 1]);
 
         $pagination = new Pagination([
             'defaultPageSize' => 5,
