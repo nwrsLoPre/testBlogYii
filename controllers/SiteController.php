@@ -189,7 +189,6 @@ class SiteController extends Controller
             'active_page' => Yii::$app->request->get("page", 1),
             'count_pages' => $pagination->getPageCount(),
             'pagination' => $pagination
-        ])
-
+        ]);
     }
 }
