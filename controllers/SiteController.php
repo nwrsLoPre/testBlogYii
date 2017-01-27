@@ -174,7 +174,7 @@ class SiteController extends Controller
             'totalCount' => $query->count()
         ]);
 
-        $posts = $query->orderBy(['date'-> SORT_DESC])
+        $posts = $query->orderBy(['date'=> SORT_DESC])
             ->offset($pagination->offset)
             ->limit($pagination->limit)
             ->all();
