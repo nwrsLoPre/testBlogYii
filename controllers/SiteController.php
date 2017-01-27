@@ -166,7 +166,7 @@ class SiteController extends Controller
         ]);
     }
 
-    public static function actionReleases()
+    public function actionReleases()
     {
         $query = Posts::find()->where(['hide' => 0, 'is_release' => 1]);
 
@@ -183,6 +183,7 @@ class SiteController extends Controller
         Posts::setNumbers($posts);
 
         $minicourses = Minicourses::find()->all();
+
         return $this->render('releases', [
             'posts' => $posts,
             'minicourses' => $minicourses,
