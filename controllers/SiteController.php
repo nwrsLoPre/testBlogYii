@@ -14,6 +14,7 @@ use app\models\MyForm;
 use app\models\Comments;
 use app\models\Posts;
 use app\models\Courses;
+use app\models\Minicourses;
 use app\models\Reviews;
 use app\models\Sites;
 use app\models\SiteForm;
@@ -163,5 +164,31 @@ class SiteController extends Controller
         return $this->render('post', [
             'post' => $post
         ]);
+    }
+
+    public static function actionReleases($posts) {
+        $query = Posts::find()->where(['hide' => 0, 'is_realese' => 1]);
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 5,
+            'totalCount' => $query->count()
+        ]);
+
+        $posts = $query->orderBy(['date'-> SORT_DESC])
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+        Posts::setNumbers($posts);
+
+        $minicourses = Minicourses::find()->all();
+        return $this->render('releases', [
+            'posts' => $posts,
+            'minicourses' => $minicourses,
+            'active_page' => Yii::$app->request->get("page", 1),
+            'count_pages' => $pagination->getPageCount(),
+            'pagination' => $pagination
+        ])
+
     }
 }

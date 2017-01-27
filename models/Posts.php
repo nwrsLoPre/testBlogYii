@@ -52,5 +52,6 @@ class Posts extends ActiveRecord
 			$number++;
 		}
 	}
+
 }
 ?>
