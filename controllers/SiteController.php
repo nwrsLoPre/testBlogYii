@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\SearchForm;
 use Yii;
 use yii\helpers\Html;
 use yii\filters\AccessControl;
@@ -46,6 +47,17 @@ class SiteController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function abeforeAction($action)
+    {
+        $model = new SearchForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate())
+        {
+            $q = Html::encode($model->q);
+            return $this->redirect(Yii::$app->urlManager->createUrl(['site/search', 'q' => $q]));
+        }
+        return  true;
     }
 
     /**
