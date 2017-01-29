@@ -49,7 +49,7 @@ class SiteController extends Controller
         ];
     }
 
-    public function abeforeAction($action)
+    public function beforeAction($action)
     {
         $model = new SearchForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate())
