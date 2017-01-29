@@ -204,4 +204,27 @@ class SiteController extends Controller
             'pagination' => $pagination
         ]);
     }
+
+    public function actionSearch()
+    {
+        $q = Yii::$app->getRequest()->getQueryParam('q');
+        $query = Posts::find()->where(['hide' => 0])->where(['like', 'full_text', $q]);
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 5,
+            'totalCount' => $query->count()
+        ]);
+
+        $posts = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+        Posts::setNumbers($posts);
+
+        return $this->render('search', [
+            'posts' => $posts,
+            'q' => $q,
+            'pagination' => $pagination
+        ]);
+    }
 }
